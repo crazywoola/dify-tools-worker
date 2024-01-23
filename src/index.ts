@@ -30,9 +30,9 @@ const resSchema = z.object({
 const quoteRoute = createRoute({
   method: "post",
   path: "/quotes",
+  operationId: "GetQuotesFromBreakingBad", // required
   summary: "Get quotes from Breaking Bad",
   description: "Retrieve quotes from the Breaking Bad series",
-  operationId: "GetQuotesFromBreakingBad",
   request: {
     body: {
       content: {
