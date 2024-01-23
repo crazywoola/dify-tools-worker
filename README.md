@@ -92,6 +92,7 @@ app.openapi(quoteRoute, async (c) => {
 ## Development
 
 ```sh
+cp .wrangler.toml.example .wrangler.toml
 npm install
 npm run dev
 # You will get a url like this: http://localhost:8787
