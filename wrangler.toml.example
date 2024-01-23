@@ -1,0 +1,20 @@
+name = "dify-custom-tool"
+compatibility_date = "2023-12-01"
+
+# [vars]
+OPENAPI_VERSION = "3.1.0"
+TOOL_VERSION = "1.0.0"
+TOOL_NAME = "Dify Custom Tool"
+TOOL_DESCRIPTION = "Dify Custom Tool"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "my-database"
+# database_id = ""
