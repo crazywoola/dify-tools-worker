@@ -102,14 +102,14 @@ npm run dev
 
 ```sh
 npm run deploy 
-# You will get a url like this: https://difftoolsworker.yourname.workers.dev
+# You will get a url like this: https://difytoolsworker.yourname.workers.dev
 ```
 
 ## Things needs to fill in Dify console
 
 - Click the `Create Tool` button
 - Click the `Import from URL ` button
-- Fill in the `https://difftoolsworker.yourname.workers.dev/doc`
+- Fill in the `https://difytoolsworker.yourname.workers.dev/doc`
 - Wala! You have created a tool in Dify console
 
 ## License
