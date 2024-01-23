@@ -24,7 +24,7 @@ const reqSchema = z.object({
 });
 
 const resSchema = z.object({
-  result: z.string(),
+  result: z.string().openapi({ example: "example request", description: "example request" }),
 });
 
 const quoteRoute = createRoute({
