@@ -46,10 +46,7 @@ const quoteRoute = createRoute({
         "application/json": { schema: resSchema },
       },
       description: "OK",
-    },
-    400: {
-      description: "Bad Request",
-    },
+    }
   },
 });
 
