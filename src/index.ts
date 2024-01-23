@@ -24,7 +24,7 @@ const reqSchema = z.object({
 });
 
 const resSchema = z.object({
-  result: z.string().openapi({ example: "ok" }),
+  result: z.string(),
 });
 
 const quoteRoute = createRoute({
@@ -46,6 +46,9 @@ const quoteRoute = createRoute({
         "application/json": { schema: resSchema },
       },
       description: "OK",
+    },
+    400: {
+      description: "Bad Request",
     },
   },
 });
