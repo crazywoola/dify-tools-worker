@@ -6,6 +6,12 @@ This is a cloudflare worker that is used to create a tool for dify app.
 
 ## Before you start
 
+### Features it provides
+
+- **OpenAPI Documentation**: It provides OpenAPI documentation for the tool.
+- **Beaer Token**: It provides a beaer token to authenticate the request.
+- **Endpoint**: It provides an endpoint to get the quotes from the Breaking Bad series.
+
 ### The doc's route
 
 This defines the route to generate OpenAPI **(Not OpenAI)** documentation.
@@ -75,6 +81,21 @@ const quoteRoute = createRoute({
     }
   },
 });
+```
+
+### The Beaer Token
+
+This is used to authenticate the request. It uses the `bearerAuth` middleware to verify the token. You can modify the `verifyToken` function to fit your needs.
+You can set the TOKEN in the `wrangler.toml` file.
+```typescript
+app.use(
+  quoteRoute.path,
+  bearerAuth({
+    verifyToken: async (token, c) => {
+      return token === c.env.TOKEN
+    },
+  })
+);
 ```
 ### The handler
 
