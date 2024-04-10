@@ -131,7 +131,11 @@ npm run deploy
 - Click the `Create Tool` button
 - Click the `Import from URL ` button
 - Fill in the `https://difytoolsworker.yourname.workers.dev/doc`
+- Setup the `Authorization` like below
+  - ![Step 1](./assets/1.png)
+  - ![Step 2](./assets/2.png)
 - Wala! You have created a tool in Dify console
+
 
 ## License
 
