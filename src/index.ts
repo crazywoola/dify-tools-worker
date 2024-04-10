@@ -1,6 +1,8 @@
 import { z, createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import { bearerAuth } from 'hono/bearer-auth'
 
 type Bindings = {
+  TOKEN: string;
   OPENAPI_VERSION: string;
   TOOL_VERSION: string;
   TOOL_NAME: string;
@@ -49,6 +51,15 @@ const quoteRoute = createRoute({
     }
   },
 });
+
+app.use(
+  quoteRoute.path,
+  bearerAuth({
+    verifyToken: async (token, c) => {
+      return token === c.env.TOKEN
+    },
+  })
+);
 
 app.openapi(quoteRoute, async (c) => {
   const { count } = c.req.valid("json");
