@@ -4,11 +4,11 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
-    "@hono/zod-openapi": "^0.10.0",
-    "hono": "^4.2.3"
+    "@hono/zod-openapi": "^0.10.1",
+    "hono": "^4.4.11"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231218.0",
-    "wrangler": "^3.22.0"
+    "wrangler": "^3.63.0"
   }
 }
