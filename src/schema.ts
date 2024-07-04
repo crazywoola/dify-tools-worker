@@ -1,9 +1,9 @@
 import { z } from "@hono/zod-openapi";
 
 export const IdSchema = z.object({
-  id: z.string().openapi({
+  user_id: z.string().openapi({
     param: {
-      name: "id",
+      name: "user_id",
       in: "path",
     },
     example: "xxxx-xxx-xxx-xxxx",
@@ -36,10 +36,6 @@ export const UserSchema = z
 
   
 export const NotFoundSchema = z.object({
-  codde: z.number().openapi({
-    example: 404,
-    description: "Error Code",
-  }),
   error: z.string().openapi({
     example: "Not Found",
     description: "Error Message",
@@ -47,10 +43,6 @@ export const NotFoundSchema = z.object({
 });
 
 export const BadRequestSchema = z.object({
-  code: z.number().openapi({
-    example: 400,
-    description: "Error Code",
-  }),
   error: z.string().openapi({
     example: "Bad Request",
     description: "Error Message",
@@ -58,10 +50,6 @@ export const BadRequestSchema = z.object({
 });
 
 export const InternalServerErrorSchema = z.object({
-  code: z.number().openapi({
-    example: 500,
-    description: "Error Code",
-  }),
   error: z.string().openapi({
     example: "Internal Server Error",
     description: "Error Message",

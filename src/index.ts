@@ -3,6 +3,7 @@ import { bearerAuth } from "hono/bearer-auth";
 import { Bindings } from "./bindings";
 import { swaggerUI } from "@hono/swagger-ui";
 import { getUser, createUser, updateUser } from "./users";
+
 const app = new OpenAPIHono<{ Bindings: Bindings }>();
 
 app.doc31("/doc", (c) => ({
@@ -27,25 +28,63 @@ app.use(
 
 app
   .openapi(getUser, async (c) => {
-    return c.json({
-      id: 1,
-      user_id: "xxxx-xxx-xxx-xxxx",
-      user_name: "John Doe",
-    });
+    const user_id = c.req.param("user_id");
+    try {
+      let user = await c.env.DB.prepare("SELECT * FROM users WHERE user_id = ?")
+        .bind(user_id)
+        .first();
+      if (!user) {
+        return c.json({ error: "user not found" }, 404);
+      }
+      return c.json(user);
+    } catch (e) {
+      return c.json({ error: e }, 500);
+    }
   })
   .openapi(createUser, async (c) => {
-    return c.json({
-      id: 1,
-      user_id: "xxxx-xxx-xxx-xxxx",
-      user_name: "John Doe",
-    });
+    const { user_id, user_name } = c.req.valid("json");
+    try {
+      let { success } = await c.env.DB.prepare(
+        "INSERT INTO users (user_id, user_name) VALUES (?, ?)"
+      )
+        .bind(user_id, user_name)
+        .run();
+      if (success) {
+        let user = await c.env.DB.prepare(
+          "SELECT * FROM users WHERE user_id = ?"
+        )
+          .bind(user_id)
+          .first();
+        return c.json(user);
+      } else {
+        return c.json({ error: "user not created" }, 500);
+      }
+    } catch (e) {
+      return c.json({ error: e }, 500);
+    }
   })
   .openapi(updateUser, async (c) => {
-    return c.json({
-      id: 1,
-      user_id: "xxxx-xxx-xxx-xxxx",
-      user_name: "John Doe",
-    });
+    const user_id = c.req.param("user_id");
+    const { user_name } = c.req.valid("json");
+    try {
+      let { success } = await c.env.DB.prepare(
+        "UPDATE users SET user_name = ? WHERE user_id = ?"
+      )
+        .bind(user_name, user_id)
+        .run();
+      if (success) {
+        let user = await c.env.DB.prepare(
+          "SELECT * FROM users WHERE user_id = ?"
+        )
+          .bind(user_id)
+          .first();
+        return c.json(user);
+      } else {
+        return c.json({ error: "user not created" }, 500);
+      }
+    } catch (e) {
+      return c.json({ error: e }, 500);
+    }
   });
 
 app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {

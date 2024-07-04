@@ -1,15 +1,16 @@
+import { z } from "@hono/zod-openapi";
 import { createRoute } from "@hono/zod-openapi";
 import {
-  IdSchema,
   InternalServerErrorSchema,
   NotFoundSchema,
   PayloadSchema,
   UserSchema,
+  IdSchema,
 } from "./schema";
 
 export const getUser = createRoute({
   method: "get",
-  path: "/users/{id}",
+  path: "/users/{user_id}",
   security: [
     {
       Bearer: [],
@@ -77,7 +78,7 @@ export const createUser = createRoute({
 
 export const updateUser = createRoute({
   method: "put",
-  path: "/users/{id}",
+  path: "/users/{user_id}",
   security: [
     {
       Bearer: [],
