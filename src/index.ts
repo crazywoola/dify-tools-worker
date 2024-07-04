@@ -1,15 +1,8 @@
-import { z, createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { bearerAuth } from 'hono/bearer-auth'
-
-type Bindings = {
-  TOKEN: string;
-  OPENAPI_VERSION: string;
-  TOOL_VERSION: string;
-  TOOL_NAME: string;
-  TOOL_DESCRIPTION: string;
-  DB: D1Database;
-};
-
+import { OpenAPIHono } from "@hono/zod-openapi";
+import { bearerAuth } from "hono/bearer-auth";
+import { Bindings } from "./bindings";
+import { swaggerUI } from "@hono/swagger-ui";
+// import { getUser, createUser, updateUser } from "./users";
 const app = new OpenAPIHono<{ Bindings: Bindings }>();
 
 app.doc31("/doc", (c) => ({
@@ -22,51 +15,19 @@ app.doc31("/doc", (c) => ({
   servers: [{ url: new URL(c.req.url).origin }],
 }));
 
-const reqSchema = z.object({
-  count: z.number().openapi({ example: 1, description: "Number of quotes to get" }),
-});
-
-const resSchema = z.object({
-  result: z.string().openapi({ example: "example request", description: "example request" }),
-});
-
-const quoteRoute = createRoute({
-  method: "post",
-  path: "/quotes",
-  operationId: "GetQuotesFromBreakingBad", // required
-  summary: "Get quotes from Breaking Bad",
-  description: "Retrieve quotes from the Breaking Bad series",
-  request: {
-    body: {
-      content: {
-        "application/json": { schema: reqSchema },
-      },
-    },
-  },
-  responses: {
-    200: {
-      content: {
-        "application/json": { schema: resSchema },
-      },
-      description: "OK",
-    }
-  },
-});
+app.get("/ui", swaggerUI({ url: "/doc" }));
 
 app.use(
-  quoteRoute.path,
   bearerAuth({
     verifyToken: async (token, c) => {
-      return token === c.env.TOKEN
+      return token === c.env.TOKEN;
     },
   })
 );
 
-app.openapi(quoteRoute, async (c) => {
-  const { count } = c.req.valid("json");
-  const url = `https://api.breakingbadquotes.xyz/v1/quotes/${count}`;
-  const result = await fetch(url).then((res) => res.text());
-  return c.json({ result });
-});
+app.openAPIRegistry.registerComponent('securitySchemes', 'Bearer', {
+  type: 'http',
+  scheme: 'bearer',
+})
 
 export default app;
