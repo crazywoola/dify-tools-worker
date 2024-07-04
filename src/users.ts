@@ -1,5 +1,11 @@
 import { createRoute } from "@hono/zod-openapi";
-import { IdSchema, PayloadSchema, UserSchema } from "./schema";
+import {
+  IdSchema,
+  InternalServerErrorSchema,
+  NotFoundSchema,
+  PayloadSchema,
+  UserSchema,
+} from "./schema";
 
 export const getUser = createRoute({
   method: "get",
@@ -20,6 +26,14 @@ export const getUser = createRoute({
         },
       },
       description: "Retrieve the user",
+    },
+    404: {
+      content: {
+        "application/json": {
+          schema: NotFoundSchema,
+        },
+      },
+      description: "User not found",
     },
   },
 });
@@ -50,6 +64,14 @@ export const createUser = createRoute({
       },
       description: "Create a new user",
     },
+    500: {
+      content: {
+        "application/json": {
+          schema: InternalServerErrorSchema,
+        },
+      },
+      description: "Internal server error",
+    },
   },
 });
 
@@ -79,6 +101,14 @@ export const updateUser = createRoute({
         },
       },
       description: "Update the user",
+    },
+    500: {
+      content: {
+        "application/json": {
+          schema: InternalServerErrorSchema,
+        },
+      },
+      description: "Internal server error",
     },
   },
 });
