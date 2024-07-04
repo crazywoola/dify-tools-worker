@@ -4,6 +4,11 @@ import { IdSchema, PayloadSchema, UserSchema } from "./schema";
 export const getUser = createRoute({
   method: "get",
   path: "/users/{id}",
+  security: [
+    {
+      Bearer: [],
+    },
+  ],
   request: {
     params: IdSchema,
   },
@@ -22,6 +27,11 @@ export const getUser = createRoute({
 export const createUser = createRoute({
   method: "post",
   path: "/users",
+  security: [
+    {
+      Bearer: [],
+    },
+  ],
   request: {
     body: {
       content: {
@@ -46,6 +56,11 @@ export const createUser = createRoute({
 export const updateUser = createRoute({
   method: "put",
   path: "/users/{id}",
+  security: [
+    {
+      Bearer: [],
+    },
+  ],
   request: {
     params: IdSchema,
     body: {

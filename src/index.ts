@@ -2,7 +2,7 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { bearerAuth } from "hono/bearer-auth";
 import { Bindings } from "./bindings";
 import { swaggerUI } from "@hono/swagger-ui";
-// import { getUser, createUser, updateUser } from "./users";
+import { getUser, createUser, updateUser } from "./users";
 const app = new OpenAPIHono<{ Bindings: Bindings }>();
 
 app.doc31("/doc", (c) => ({
@@ -25,9 +25,31 @@ app.use(
   })
 );
 
-app.openAPIRegistry.registerComponent('securitySchemes', 'Bearer', {
-  type: 'http',
-  scheme: 'bearer',
-})
+app
+  .openapi(getUser, async (c) => {
+    return c.json({
+      id: 1,
+      user_id: "xxxx-xxx-xxx-xxxx",
+      user_name: "John Doe",
+    });
+  })
+  .openapi(createUser, async (c) => {
+    return c.json({
+      id: 1,
+      user_id: "xxxx-xxx-xxx-xxxx",
+      user_name: "John Doe",
+    });
+  })
+  .openapi(updateUser, async (c) => {
+    return c.json({
+      id: 1,
+      user_id: "xxxx-xxx-xxx-xxxx",
+      user_name: "John Doe",
+    });
+  });
 
+app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
+  type: "http",
+  scheme: "bearer",
+});
 export default app;
