@@ -11,6 +11,8 @@ import {
 export const getUser = createRoute({
   method: "get",
   path: "/users/{user_id}",
+  operationId: "getUser",
+  summary: "Retrieve the user by user_id used in the dify service",
   security: [
     {
       Bearer: [],
@@ -42,6 +44,8 @@ export const getUser = createRoute({
 export const createUser = createRoute({
   method: "post",
   path: "/users",
+  operationId: "createUser",
+  summary: "Create a new user",
   security: [
     {
       Bearer: [],
@@ -79,6 +83,8 @@ export const createUser = createRoute({
 export const updateUser = createRoute({
   method: "put",
   path: "/users/{user_id}",
+  operationId: "updateUser",
+  summary: "Update the user by user_id used in the dify service",
   security: [
     {
       Bearer: [],
