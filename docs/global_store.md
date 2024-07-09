@@ -3,9 +3,44 @@
 
 ### Quick Start
 
-https://developers.cloudflare.com/d1/get-started
+You will get a url like this: https://difytoolsworker.yourname.workers.dev
 
-#### Worker
+#### Step 0
+In Dify tools, you can create a new custom tool and use the `https://difytoolsworker.yourname.workers.dev/doc` as the endpoint.
+
+#### Step 1
+
+Click import from URL you deployed from Cloudflare Workers.
+
+<img src="../assets/3.png" width="500">
+
+#### Step 2
+
+Set the Authorization header with the token you set in the wrangler.toml file. Mine is `bananaiscool`.
+
+<img src="../assets/4.png" width="500">
+
+#### Step 3
+
+Click Save and you are done.
+
+### Step 4
+
+You can now use the tool in Dify Workflows.
+
+Not Found
+
+<img src="../assets/5.png" width="500">  
+
+Found   
+
+<img src="../assets/6.png" width="500">
+
+In D1 Console
+
+<img src="../assets/7.png" width="500">
+
+### Development
 ```
 npm install
 cp wrangler.toml.example wrangler.toml
@@ -54,3 +89,8 @@ npx wrangler d1 migrations list <DATABASE_NAME> --local
 ```
 npm run deploy
 ```
+
+## References
+
+[Cloudflare Workers](https://developers.cloudflare.com/workers/)
+[D1](https://developers.cloudflare.com/workers/cli-wrangler/commands/d1)
