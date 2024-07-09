@@ -1,4 +1,4 @@
-# Global Store Guide
+# Global Storage Guide
 
 ## Description
 
