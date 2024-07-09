@@ -55,3 +55,11 @@ export const InternalServerErrorSchema = z.object({
     description: "Error Message",
   }),
 });
+
+export const ResponseSchema = z.object({
+  data: z.any().openapi({ description: "Response Data" }),
+  error: z.union([z.string(), z.null()]).openapi({
+    example: "Error Message",
+    description: "Error Message or null if no error occurred",
+  }),
+});

@@ -34,11 +34,18 @@ app
         .bind(user_id)
         .first();
       if (!user) {
-        return c.json({ error: "user not found" }, 404);
+        return c.json({
+          error: "Not Found",
+        });
       }
-      return c.json(user);
+      return c.json({
+        data: user,
+        error: null,
+      });
     } catch (e) {
-      return c.json({ error: e }, 500);
+      return c.json({
+        error: "Internal Server Error",
+      });
     }
   })
   .openapi(createUser, async (c) => {
@@ -55,12 +62,19 @@ app
         )
           .bind(user_id)
           .first();
-        return c.json(user);
+        return c.json({
+          data: user,
+          error: null,
+        });
       } else {
-        return c.json({ error: "user not created" }, 500);
+        return c.json({
+          error: "Internal Server Error",
+        });
       }
     } catch (e) {
-      return c.json({ error: e }, 500);
+      return c.json({
+        error: "Internal Server Error",
+      });
     }
   })
   .openapi(updateUser, async (c) => {
@@ -78,12 +92,19 @@ app
         )
           .bind(user_id)
           .first();
-        return c.json(user);
+        return c.json({
+          data: user,
+          error: null,
+        });
       } else {
-        return c.json({ error: "user not created" }, 500);
+        return c.json({
+          error: "Internal Server Error",
+        });
       }
     } catch (e) {
-      return c.json({ error: e }, 500);
+      return c.json({
+        error: "Internal Server Error",
+      });
     }
   });
 

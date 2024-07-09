@@ -2,4 +2,7 @@
 
 ## Description
 
-This is a cloudflare worker that is used to create a tool for dify app.
+This is an example of using Cloudflare Workers to create a simple API that store and retrieve data from D1 storage.
+
+[Basic Template](./docs/basic.md)  
+[Global Storage](./docs/global_store.md)
