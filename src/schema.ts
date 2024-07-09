@@ -57,7 +57,10 @@ export const InternalServerErrorSchema = z.object({
 });
 
 export const ResponseSchema = z.object({
-  data: z.any().openapi({ description: "Response Data" }),
+  data: z.unknown().openapi({
+    example: {},
+    description: "Response data",
+  }),
   error: z.union([z.string(), z.null()]).openapi({
     example: "Error Message",
     description: "Error Message or null if no error occurred",
