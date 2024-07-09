@@ -1,0 +1,287 @@
+app:
+  description: ''
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Test
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1720071647324-source-1720490783358-target
+      source: '1720071647324'
+      sourceHandle: source
+      target: '1720490783358'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1720490783358-source-1720491840537-target
+      source: '1720490783358'
+      sourceHandle: source
+      target: '1720491840537'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1720491840537-source-1720490927477-target
+      source: '1720491840537'
+      sourceHandle: source
+      target: '1720490927477'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1720490927477-true-1720490975246-target
+      source: '1720490927477'
+      sourceHandle: 'true'
+      target: '1720490975246'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: tool
+      id: 1720490927477-false-1720492201843-target
+      source: '1720490927477'
+      sourceHandle: 'false'
+      target: '1720492201843'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1720492201843-source-1720491252447-target
+      source: '1720492201843'
+      sourceHandle: source
+      target: '1720491252447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: Username
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: username
+      height: 90
+      id: '1720071647324'
+      position:
+        x: 30
+        y: 263
+      positionAbsolute:
+        x: 30
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: a58c5395-b07e-451e-816b-ac7ee502ff47
+        provider_name: Users Store
+        provider_type: api
+        selected: false
+        title: getUser
+        tool_configurations: {}
+        tool_label: getUser
+        tool_name: getUser
+        tool_parameters:
+          user_id:
+            type: mixed
+            value: '{{#sys.user_id#}}'
+        type: tool
+      height: 54
+      id: '1720490783358'
+      position:
+        x: 334
+        y: 263
+      positionAbsolute:
+        x: 334
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        conditions:
+        - comparison_operator: is
+          id: '1720490928975'
+          value: Found
+          variable_selector:
+          - '1720491840537'
+          - result
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1720490927477'
+      position:
+        x: 942
+        y: 263
+      positionAbsolute:
+        x: 942
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720490783358'
+          - text
+          variable: result
+        selected: false
+        title: User Found
+        type: end
+      height: 90
+      id: '1720490975246'
+      position:
+        x: 1246
+        y: 263
+      positionAbsolute:
+        x: 1246
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720492201843'
+          - text
+          variable: result
+        selected: false
+        title: User Not Found
+        type: end
+      height: 90
+      id: '1720491252447'
+      position:
+        x: 1550
+        y: 375
+      positionAbsolute:
+        x: 1550
+        y: 375
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\nfunction main({arg1}) {\n    return {\n        result: JSON.parse(arg1).error\
+          \ || \"Found\"\n    }\n}\n"
+        code_language: javascript
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Not Found | Found
+        type: code
+        variables:
+        - value_selector:
+          - '1720490783358'
+          - text
+          variable: arg1
+      height: 54
+      id: '1720491840537'
+      position:
+        x: 638
+        y: 263
+      positionAbsolute:
+        x: 638
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: a58c5395-b07e-451e-816b-ac7ee502ff47
+        provider_name: Users Store
+        provider_type: api
+        selected: false
+        title: createUser
+        tool_configurations: {}
+        tool_label: createUser
+        tool_name: createUser
+        tool_parameters:
+          user_id:
+            type: mixed
+            value: '{{#sys.user_id#}}'
+          user_name:
+            type: mixed
+            value: '{{#1720071647324.username#}}'
+        type: tool
+      height: 54
+      id: '1720492201843'
+      position:
+        x: 1246
+        y: 393
+      positionAbsolute:
+        x: 1246
+        y: 393
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 151.9705634247041
+      y: 186.8374122328145
+      zoom: 0.3905087628137374

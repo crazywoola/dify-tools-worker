@@ -92,5 +92,6 @@ npm run deploy
 
 ## References
 
-[Cloudflare Workers](https://developers.cloudflare.com/workers/)
-[D1](https://developers.cloudflare.com/workers/cli-wrangler/commands/d1)
+[Example Workflows](../assets/Test.yml)  
+[Cloudflare Workers](https://developers.cloudflare.com/workers/)  
+[Cloudflare D1](https://developers.cloudflare.com/workers/cli-wrangler/commands/d1)
