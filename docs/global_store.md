@@ -1,30 +1,33 @@
+# Global Store Guide
 
-## Development
+## Description
 
-### Quick Start
+A CRUD example of using Cloudflare Workers to create a simple API that store and retrieve data from D1 storage.
+
+## Quick Start
 
 You will get a url like this: https://difytoolsworker.yourname.workers.dev
 
-#### Step 0
+### Step 0
 In Dify tools, you can create a new custom tool and use the `https://difytoolsworker.yourname.workers.dev/doc` as the endpoint.
 
-#### Step 1
+### Step 1
 
 Click import from URL you deployed from Cloudflare Workers.
 
 <img src="../assets/3.png" width="600">
 
-#### Step 2
+### Step 2
 
 Set the Authorization header with the token you set in the wrangler.toml file. Mine is `bananaiscool`.
 
 <img src="../assets/4.png" width="600">
 
-#### Step 3
+### Step 3
 
 Click Save and you are done.
 
-### Step 4
+## Step 4
 
 You can now use the tool in Dify Workflows.
 
@@ -40,7 +43,7 @@ In D1 Console
 
 <img src="../assets/7.png" width="600">
 
-### Development
+## Development
 ```
 npm install
 cp wrangler.toml.example wrangler.toml
