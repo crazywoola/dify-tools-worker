@@ -15,13 +15,13 @@ In Dify tools, you can create a new custom tool and use the `https://difytoolswo
 
 Click import from URL you deployed from Cloudflare Workers.
 
-<img src="../assets/3.png" width="600">
+<img src="../assets/3.png" width="800">
 
 ### Step 2
 
 Set the Authorization header with the token you set in the wrangler.toml file. Mine is `bananaiscool`.
 
-<img src="../assets/4.png" width="600">
+<img src="../assets/4.png" width="800">
 
 ### Step 3
 
@@ -33,15 +33,15 @@ You can now use the tool in Dify Workflows.
 
 Not Found
 
-<img src="../assets/5.png" width="600">  
+<img src="../assets/5.png" width="800">  
 
 Found   
 
-<img src="../assets/6.png" width="600">
+<img src="../assets/6.png" width="800">
 
 In D1 Console
 
-<img src="../assets/7.png" width="600">
+<img src="../assets/7.png" width="800">
 
 ## Development
 ```
