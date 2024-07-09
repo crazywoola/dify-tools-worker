@@ -1,5 +1,5 @@
 name = "dify-custom-tool"
-compatibility_date = "2023-12-01"
+compatibility_date = "2024-07-01"
 
 [vars]
 TOKEN = "bananaiscool"
@@ -15,7 +15,7 @@ TOOL_DESCRIPTION = "Dify Custom Tool"
 # binding = "MY_BUCKET"
 # bucket_name = "my-bucket"
 
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "my-database"
-# database_id = ""
+[[d1_databases]]
+binding = "DB"
+database_name = "MY_DB"
+database_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
